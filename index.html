@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="app-mode" content="static">
+    <meta name="description"
+        content="TastyBites - Discover, cook, and save delicious recipes. Full-stack recipe application and interactive preview.">
+    <title>TastyBites - Discover & Cook Delicious Recipes</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+
+    <!-- ==========================================================================
+     Animated Spiral Intro Window
+     ========================================================================== -->
+    <div id="introOverlay" class="intro-overlay">
+        <button id="skipIntroBtn" class="intro-skip-btn">Skip Intro &rarr;</button>
+
+        <div class="intro-spiral-container">
+            <!-- 8 Dishes Circling and Scattering all over the screen -->
+            <div class="spiral-dish dish-1"><span class="dish-emoji">🍰</span></div>
+            <div class="spiral-dish dish-2"><span class="dish-emoji">🍔</span></div>
+            <div class="spiral-dish dish-3"><span class="dish-emoji">🥗</span></div>
+            <div class="spiral-dish dish-4"><span class="dish-emoji">🍝</span></div>
+            <div class="spiral-dish dish-5"><span class="dish-emoji">🥞</span></div>
+            <div class="spiral-dish dish-6"><span class="dish-emoji">🍹</span></div>
+            <div class="spiral-dish dish-7"><span class="dish-emoji">🍕</span></div>
+            <div class="spiral-dish dish-8"><span class="dish-emoji">🍣</span></div>
+
+            <!-- Shockwave Energy Rings -->
+            <div class="intro-shockwave ring-1"></div>
+            <div class="intro-shockwave ring-2"></div>
+
+            <!-- Center Brand Reveal -->
+            <div class="intro-brand-box">
+                <div class="intro-logo-badge">🍳</div>
+                <h1 class="intro-title">Tasty Bites</h1>
+                <p class="intro-tagline">Discover &bull; Cook &bull; Savor</p>
+                <div class="intro-sparkles">✨ ✨ ✨</div>
+            </div>
+        </div>
+    </div>
+
+    <header>
+        <a href="index.html" class="logo-container" id="brandLogo">
+            <div class="logo-icon">🍳</div>
+            <h1>TastyBites</h1>
+        </a>
+
+        <nav>
+            <a href="index.html" class="active" id="navHome">
+                <span>🏠</span> Home
+            </a>
+            <a href="#favorites" id="navFavorites">
+                <span>❤️</span> Favorites
+            </a>
+            <a href="#add-recipe" id="navAddRecipe">
+                <span>✨</span> Add Recipe
+            </a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-tag">
+            <span>🔥</span> Hand-Picked Culinary Delights
+        </div>
+
+        <h2>Find Your Next <span>Favorite Meal</span></h2>
+        <p>Explore chef-crafted recipes, easy-to-cook comfort food, and vibrant drinks tailored for food lovers.</p>
+
+        <div class="search-wrapper">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="searchInput" placeholder="Search recipes, ingredients, or meals..."
+                autocomplete="off">
+        </div>
+
+        <!-- Hidden select for form compatibility -->
+        <select id="categoryFilter" style="display:none;">
+            <option value="all">All</option>
+            <option value="Breakfast">Breakfast</option>
+            <option value="Lunch">Lunch</option>
+            <option value="Dinner">Dinner</option>
+            <option value="Dessert">Dessert</option>
+            <option value="Drinks">Drinks</option>
+        </select>
+
+        <!-- Animated Category Filter Pills -->
+        <div class="category-pills">
+            <button type="button" class="category-pill active" data-cat="all">✨ All Recipes</button>
+            <button type="button" class="category-pill" data-cat="Breakfast">🥞 Breakfast</button>
+            <button type="button" class="category-pill" data-cat="Lunch">🥗 Lunch</button>
+            <button type="button" class="category-pill" data-cat="Dinner">🍔 Dinner</button>
+            <button type="button" class="category-pill" data-cat="Dessert">🍰 Dessert</button>
+            <button type="button" class="category-pill" data-cat="Drinks">🍹 Drinks</button>
+        </div>
+    </section>
+
+    <section class="container">
+        <div class="section-header">
+            <div>
+                <h2 id="sectionTitle">Explore Recipes</h2>
+                <p id="sectionSub" style="display:none; color:var(--text-muted); font-size:14px; margin-top:4px;">
+                    Your curated personal cookbook of saved recipes.
+                </p>
+            </div>
+            <div class="recipe-count-badge" id="recipeCountBadge">
+                6 Recipes
+            </div>
+        </div>
+
+        <div class="recipe-grid" id="recipeGrid">
+
+            <!-- 1. Fruit Smoothie -->
+            <div class="recipe-card" data-id="6" data-name="fruit smoothie" data-category="Drinks"
+                data-ingredients="banana, strawberry, milk, honey">
+                <div class="card-media">
+                    <span class="card-badge" data-cat="Drinks">Drinks</span>
+                    <img src="https://images.unsplash.com/photo-1502741224143-90386d7f8c82?w=600" alt="Fruit Smoothie"
+                        loading="lazy">
+                </div>
+                <div class="card-content">
+                    <h3>Fruit Smoothie</h3>
+                    <div class="recipe-meta">
+                        <span class="meta-item">⏱️ 5 mins</span>
+                        <span class="meta-item">🍽️ Drinks</span>
+                    </div>
+                    <div class="card-actions">
+                        <a class="view-btn" href="#recipe-6" data-id="6">View Recipe &rarr;</a>
+                        <button type="button" class="favorite-icon-btn" data-id="6" title="Add to favorites">🤍</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. Chicken Burger -->
+            <div class="recipe-card" data-id="5" data-name="chicken burger" data-category="Dinner"
+                data-ingredients="burger bun, chicken patty, lettuce, tomato, cheese, sauce">
+                <div class="card-media">
+                    <span class="card-badge" data-cat="Dinner">Dinner</span>
+                    <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=600" alt="Chicken Burger"
+                        loading="lazy">
+                </div>
+                <div class="card-content">
+                    <h3>Chicken Burger</h3>
+                    <div class="recipe-meta">
+                        <span class="meta-item">⏱️ 30 mins</span>
+                        <span class="meta-item">🍽️ Dinner</span>
+                    </div>
+                    <div class="card-actions">
+                        <a class="view-btn" href="#recipe-5" data-id="5">View Recipe &rarr;</a>
+                        <button type="button" class="favorite-icon-btn" data-id="5" title="Add to favorites">🤍</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. Fluffy Pancakes -->
+            <div class="recipe-card" data-id="4" data-name="pancakes" data-category="Breakfast"
+                data-ingredients="flour, milk, egg, sugar, baking powder">
+                <div class="card-media">
+                    <span class="card-badge" data-cat="Breakfast">Breakfast</span>
+                    <img src="https://images.unsplash.com/photo-1528207776546-365bb710ee93?w=600" alt="Pancakes"
+                        loading="lazy">
+                </div>
+                <div class="card-content">
+                    <h3>Pancakes</h3>
+                    <div class="recipe-meta">
+                        <span class="meta-item">⏱️ 15 mins</span>
+                        <span class="meta-item">🍽️ Breakfast</span>
+                    </div>
+                    <div class="card-actions">
+                        <a class="view-btn" href="#recipe-4" data-id="4">View Recipe &rarr;</a>
+                        <button type="button" class="favorite-icon-btn" data-id="4" title="Add to favorites">🤍</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4. Italian Pasta -->
+            <div class="recipe-card" data-id="3" data-name="pasta" data-category="Lunch"
+                data-ingredients="pasta, tomato, onion, garlic, oil, salt">
+                <div class="card-media">
+                    <span class="card-badge" data-cat="Lunch">Lunch</span>
+                    <img src="https://images.unsplash.com/photo-1473093295043-cdd812d0e601?w=600" alt="Pasta"
+                        loading="lazy">
+                </div>
+                <div class="card-content">
+                    <h3>Pasta</h3>
+                    <div class="recipe-meta">
+                        <span class="meta-item">⏱️ 25 mins</span>
+                        <span class="meta-item">🍽️ Lunch</span>
+                    </div>
+                    <div class="card-actions">
+                        <a class="view-btn" href="#recipe-3" data-id="3">View Recipe &rarr;</a>
+                        <button type="button" class="favorite-icon-btn" data-id="3" title="Add to favorites">🤍</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 5. Fresh Vegetable Salad -->
+            <div class="recipe-card" data-id="2" data-name="vegetable salad" data-category="Breakfast"
+                data-ingredients="lettuce, tomato, cucumber, carrot, olive oil, salt">
+                <div class="card-media">
+                    <span class="card-badge" data-cat="Breakfast">Breakfast</span>
+                    <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=600" alt="Vegetable Salad"
+                        loading="lazy">
+                </div>
+                <div class="card-content">
+                    <h3>Vegetable Salad</h3>
+                    <div class="recipe-meta">
+                        <span class="meta-item">⏱️ 10 mins</span>
+                        <span class="meta-item">🍽️ Breakfast</span>
+                    </div>
+                    <div class="card-actions">
+                        <a class="view-btn" href="#recipe-2" data-id="2">View Recipe &rarr;</a>
+                        <button type="button" class="favorite-icon-btn" data-id="2" title="Add to favorites">🤍</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 6. Decadent Chocolate Cake -->
+            <div class="recipe-card" data-id="1" data-name="chocolate cake" data-category="Dessert"
+                data-ingredients="flour, sugar, cocoa powder, eggs, milk, butter">
+                <div class="card-media">
+                    <span class="card-badge" data-cat="Dessert">Dessert</span>
+                    <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=600" alt="Chocolate Cake"
+                        loading="lazy">
+                </div>
+                <div class="card-content">
+                    <h3>Chocolate Cake</h3>
+                    <div class="recipe-meta">
+                        <span class="meta-item">⏱️ 40 mins</span>
+                        <span class="meta-item">🍽️ Dessert</span>
+                    </div>
+                    <div class="card-actions">
+                        <a class="view-btn" href="#recipe-1" data-id="1">View Recipe &rarr;</a>
+                        <button type="button" class="favorite-icon-btn" data-id="1" title="Add to favorites">🤍</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Empty Favorites Placeholder -->
+        <div id="emptyFavoritesState" class="empty-favorites-box" style="display:none;">
+            <span class="empty-heart-icon">💔</span>
+            <h3 style="font-family:'Outfit', sans-serif; font-size:22px; margin-bottom:8px; color:var(--secondary);">No
+                favorite recipes yet!</h3>
+            <p style="color:var(--text-muted); font-size:14px; margin-bottom:24px;">Click the heart icon on any recipe
+                card to save it to your personal cookbook.</p>
+            <button type="button" id="browseAllRecipesBtn" class="view-btn"
+                style="display:inline-flex; width:auto; padding:12px 28px;">Browse All Recipes &rarr;</button>
+        </div>
+
+        <div id="noResults" style="display:none;">
+            <span>🔍</span>
+            <h3>No matching recipes found</h3>
+            <p>Try searching for different ingredients or select a different category pill above.</p>
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+     Recipe Details Modal (for Client-Side / Standalone Preview)
+     ========================================================================== -->
+    <div id="recipeModal" class="app-modal">
+        <div class="modal-dialog">
+            <button type="button" class="modal-close-btn" id="closeRecipeModalBtn">&times;</button>
+
+            <div class="recipe-hero-image" style="height:320px;">
+                <img id="modalRecipeImage" src="" alt="Recipe Image">
+                <div class="recipe-hero-overlay">
+                    <h2 id="modalRecipeName" style="font-size:32px;">Recipe Name</h2>
+                    <div class="recipe-quick-specs">
+                        <span class="spec-pill" id="modalRecipeCategory">🏷️ Category</span>
+                        <span class="spec-pill" id="modalRecipeTime">⏱️ 20 minutes</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="recipe-body-content" style="padding:28px 30px 36px;">
+                <div class="recipe-grid-layout" style="margin-bottom:24px;">
+                    <!-- Ingredients Checklist -->
+                    <div>
+                        <h3 class="recipe-section-title"><span>🥗</span> Ingredients</h3>
+                        <p style="font-size:12px; color:var(--text-light); margin-bottom:12px;">Tip: Click items to
+                            check them off while cooking!</p>
+                        <ul class="ingredient-list" id="modalIngredientsList"></ul>
+                    </div>
+
+                    <!-- Cooking Steps -->
+                    <div>
+                        <h3 class="recipe-section-title"><span>👩‍🍳</span> Cooking Steps</h3>
+                        <div class="instruction-steps" id="modalInstructionSteps"></div>
+                    </div>
+                </div>
+
+                <div class="recipe-detail-actions">
+                    <button type="button" class="back-link" id="modalBackLink"
+                        style="background:none; border:none; cursor:pointer;">&larr; Close details</button>
+                    <button type="button" class="view-btn" id="modalFavToggleBtn"
+                        style="width:auto; padding:12px 24px;">❤️ Save to Favorites</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==========================================================================
+     Add Recipe Modal (for Client-Side / Standalone Preview)
+     ========================================================================== -->
+    <div id="addRecipeModal" class="app-modal">
+        <div class="modal-dialog" style="max-width:620px;">
+            <button type="button" class="modal-close-btn" id="closeAddRecipeModalBtn">&times;</button>
+
+            <div class="form-card" style="margin:0; box-shadow:none; border:none; padding:32px 28px;">
+                <div class="form-header">
+                    <h2>Share Your Creation 👨‍🍳</h2>
+                    <p>Add a new dish to the TastyBites culinary collection.</p>
+                </div>
+
+                <form id="standaloneAddRecipeForm">
+                    <div class="form-group">
+                        <label for="recipeNameInput">Recipe Name *</label>
+                        <input type="text" id="recipeNameInput" class="form-control"
+                            placeholder="e.g. Creamy Tuscan Garlic Chicken" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="recipeCategoryInput">Category *</label>
+                        <select id="recipeCategoryInput" class="form-control" required>
+                            <option value="">Select a Category</option>
+                            <option value="Breakfast">🥞 Breakfast</option>
+                            <option value="Lunch">🥗 Lunch</option>
+                            <option value="Dinner">🍔 Dinner</option>
+                            <option value="Dessert">🍰 Dessert</option>
+                            <option value="Drinks">🍹 Drinks</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="recipeImageInput">Cover Image URL (Optional)</label>
+                        <input type="url" id="recipeImageInput" class="form-control"
+                            placeholder="https://images.unsplash.com/photo-..." autocomplete="off">
+                        <div class="image-preview-box" id="recipeImagePreviewBox">
+                            Live image preview will appear here
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="recipeCookingTimeInput">Cooking Time (minutes) *</label>
+                        <input type="number" id="recipeCookingTimeInput" class="form-control" min="1" max="1440"
+                            placeholder="e.g. 25" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="recipeIngredientsInput">Ingredients *</label>
+                        <textarea id="recipeIngredientsInput" class="form-control"
+                            placeholder="List ingredients separated by commas (e.g. 200g Chicken breast, 2 cloves Garlic, 1 cup Heavy cream)"
+                            required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="recipeInstructionsInput">Cooking Instructions *</label>
+                        <textarea id="recipeInstructionsInput" class="form-control" style="min-height:120px;"
+                            placeholder="Step 1: Heat olive oil in a skillet...&#10;Step 2: Add garlic and sauté until fragrant...&#10;Step 3: Simmer sauce and serve warm."
+                            required></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-btn">Publish Recipe 🚀</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 TastyBites &bull; Crafted with passion for food lovers everywhere.</p>
+    </footer>
+
+</body>
+
+</html>
